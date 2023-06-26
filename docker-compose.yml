@@ -1,0 +1,26 @@
+version: '3'
+# We define two services, backend and frontend
+services:
+  backend:
+    # We build the backend service in the current directory
+    build:
+      context: ./
+    # We expose port 5000 on the host machine
+    ports:
+      - 5000:5000
+    # We define that the backend service depends on the frontend service
+    depends_on:
+      - frontend
+
+  frontend:
+    # We build the frontend service in the client directory
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    # We expose port 3000 on the host machine
+    ports:
+      - 3000:3000
+    environment:
+      # We set the REACT_APP_API_URL environment variable to the backend service address
+      - REACT_APP_API_URL=http://backend:5000
+

@@ -12,7 +12,7 @@ const Chart = () => {
     try {
       const response = await fetch('http://localhost:5000/data');  // Replace with your Flask API endpoint
       const jsonData = await response.json();
-      console.log('jsonData:', jsonData);
+      // console.log('jsonData:', jsonData);
       setData(jsonData.result.rows);
     } catch (error) {
       console.error('Error fetching data:', error);
